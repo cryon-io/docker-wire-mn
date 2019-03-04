@@ -32,7 +32,7 @@ RUN apt-get -y install git libevent-dev libboost-dev libboost-chrono-dev libboos
 
 ADD healthcheck.sh /healthcheck.sh
 RUN chmod +x /healthcheck.sh
-HEALTHCHECK --interval=5s --timeout=3s --start-period=30s --retries=5 \
+HEALTHCHECK --interval=10s --timeout=30s --start-period=30s --retries=3 \
   CMD /healthcheck.sh
 
 # create user
