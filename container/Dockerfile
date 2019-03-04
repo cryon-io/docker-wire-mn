@@ -30,12 +30,10 @@ RUN apt-get -y install git libevent-dev libboost-dev libboost-chrono-dev libboos
     libdb4.8++-dev libminiupnpc-dev virtualenv python-pip dh-autoreconf pkg-config build-essential \
     libssl-dev libzmq3-dev libgmp3-dev libminiupnpc-dev
 
+ADD healthcheck.sh /healthcheck.sh
+RUN chmod +x /healthcheck.sh
 HEALTHCHECK --interval=5s --timeout=3s --start-period=30s --retries=5 \
-  CMD curl -X POST --user "healthcheck:healthcheck_pass" --url http://localhost:10000 \
-                                        --header 'Cache-Control: no-cache' \
-                                        --header 'Content-Type: application/json' \
-                                        --data '{"jsonrpc":"2.0","id":"healthcheck","method":"getblockchaininfo","params":[]}' \
-                                        --silent -k --fail || exit 1
+  CMD /healthcheck.sh
 
 # create user
 RUN adduser --disabled-login \
