@@ -21,7 +21,6 @@
 BASEDIR=$(dirname "$0")
 
 if [ ! -d "$BASEDIR/../data/blocks" ]; then 
-    exit 0;
     GIT_INFO=$(curl -sL "https://api.github.com/repos/AirWireOfficial/wire-core/releases/latest")                                       
     URL=$(printf "%s\n" "$GIT_INFO" | jq .assets[].browser_download_url -r | grep snapshot)  
 
@@ -42,4 +41,5 @@ if [ ! -d "$BASEDIR/../data/blocks" ]; then
         rm -f "./$FILE.zip")
     ;;
     esac
+    sh "$BASEDIR/fs-permissions.sh"
 fi
