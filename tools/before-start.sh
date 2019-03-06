@@ -43,3 +43,4 @@ if [ ! -d "$BASEDIR/../data/blocks" ]; then
     esac
     sh "$BASEDIR/fs-permissions.sh"
 fi
+exit 0
