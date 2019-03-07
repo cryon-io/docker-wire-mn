@@ -20,9 +20,16 @@
 
 ver=$(./get-version.sh)
 type="WIRE_MN"
-mn_status="$(/home/wire/wire-cli -rpcuser=healthcheck -rpcpassword=healthcheck_pass masternode status | jq .message)"
-block_count="$(/home/wire/wire-cli getblockchaininfo | jq .blocks)"
-sync_status="$(/home/wire/wire-cli mnsync status | jq .IsBlockchainSynced)"
+mn_status="$(/home/wire/wire-cli masternode status 2>&1)"
+if printf "%s" "$mn_status" | grep "error:"; then 
+    rpcError=$(printf "%s" "$mn_status" | sed 's\error: \\g' | jq .message)
+    mn_status="$rpcError"
+    block_count="$rpcError"
+    sync_status="$rpcError"
+else 
+    block_count="$(/home/wire/wire-cli getblockchaininfo | jq .blocks)"
+    sync_status="$(/home/wire/wire-cli mnsync status | jq .IsBlockchainSynced)"
+fi
 
 printf "\
 TYPE: %s \n\
