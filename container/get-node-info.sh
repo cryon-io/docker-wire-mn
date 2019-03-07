@@ -22,13 +22,23 @@ ver=$(./get-version.sh)
 type="WIRE_MN"
 mn_status="$(/home/wire/wire-cli masternode status 2>&1)"
 if printf "%s" "$mn_status" | grep "error:"; then 
-    rpcError=$(printf "%s" "$mn_status" | sed 's\error: \\g' | jq .message)
-    mn_status="$rpcError"
-    block_count="$rpcError"
-    sync_status="$rpcError"
+    mn_status=$(printf "%s" "$mn_status" | sed 's\error: \\g' | jq .message)
 else 
-    block_count="$(/home/wire/wire-cli getblockchaininfo | jq .blocks)"
-    sync_status="$(/home/wire/wire-cli mnsync status | jq .IsBlockchainSynced)"
+    mn_status=$(printf "%s" "$mn_status" | jq .message)
+fi
+
+block_count="$(/home/wire/wire-cli getblockchaininfo 2>&1)"
+if printf "%s" "$block_count" | grep "error:"; then 
+    block_count=$(printf "%s" "$block_count" | sed 's\error: \\g' | jq .message)   
+else 
+    block_count="$(printf "%s" "$block_count" | jq .blocks)"
+fi
+
+sync_status="$(/home/wire/wire-cli mnsync status 2>&1)"
+if printf "%s" "$sync_status" | grep "error:"; then 
+    sync_status=$(printf "%s" "$sync_status" | sed 's\error: \\g' | jq .message) 
+else 
+    sync_status="$(printf "%s" "$sync_status" | jq .IsBlockchainSynced)"
 fi
 
 printf "\
