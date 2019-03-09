@@ -42,17 +42,17 @@ else
 fi
 
 printf "\
-TYPE: %s \n\
-VERSION: %s \n\
-MN_STATUS: %s \n\
-BLOCKS: %s \n\
-SYNCED: %s \n\
+TYPE: %s
+VERSION: %s
+MN STATUS: %s
+BLOCKS: %s
+SYNCED: %s
 " "$type" "$ver" "$mn_status" "$block_count" "$sync_status"> /home/wire/.wire/node.info
 
 printf "\
-TYPE: %s \n\
-VERSION: %s \n\
-MN_STATUS: %s \n\
-BLOCKS: %s \n\
-SYNCED: %s \n\
+TYPE: %s
+VERSION: %s
+MN STATUS: %s
+BLOCKS: %s
+SYNCED: %s
 " "$type" "$ver" "$mn_status" "$block_count" "$sync_status"

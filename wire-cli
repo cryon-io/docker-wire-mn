@@ -26,4 +26,4 @@ if [ -f "$BASEDIR/project_id" ]; then
 fi 
 
 container=$(docker-compose -f "$BASEDIR/docker-compose.yml" $PROJECT ps -q mn)
-docker exec --user wire "$container" /home/wire/wire-cli -rpcport=10000 -rpcuser=healthcheck -rpcpassword=healthcheck_pass "$@"
+docker exec --user wire "$container" /home/wire/wire-cli "$@"
