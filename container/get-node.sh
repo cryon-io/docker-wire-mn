@@ -19,7 +19,7 @@
 #  Contact: cryi@tutanota.com
 
 GIT_INFO=$(curl -sL "https://api.github.com/repos/AirWireOfficial/wire-core/releases/latest")                                       
-URL=$(printf "%s\n" "$GIT_INFO" | jq .assets[].browser_download_url -r | grep linux | grep 18.04)                         
+URL=$(printf "%s\n" "$GIT_INFO" | jq .assets[].browser_download_url -r | grep linux | grep -v qt)                          
 
 if [ -f "./limits.conf" ]; then 
     if grep "NODE_BINARY=" "./limits.conf"; then 
@@ -45,5 +45,9 @@ case "$URL" in
     ;;
 esac
 
-cp -f "$(find . -name wired)" . 2>/dev/null || exit 0
-cp -f "$(find . -name wire-cli)" . 2>/dev/null || exit 0
+cp -f "$(find . -name wired)" . 2>/dev/null
+cp -f "$(find . -name wire-cli)" . 2>/dev/null
+
+printf "%s" "$(printf "%s" "$GIT_INFO" | jq .tag_name -r | sed 's\v\\')" > ./version
+
+exit 0

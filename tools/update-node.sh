@@ -21,7 +21,7 @@
 PATH_TO_SCRIPT=$(readlink -f "$0")
 BASEDIR=$(dirname "$PATH_TO_SCRIPT")
 
-if [ -f "$BASEDIR/../project_id" ]; then 
+if [ -f "$BASEDIR/../project_id" ]; then
     PROJECT=$(sed 's/PROJECT=//g' "$BASEDIR/../project_id")
     PROJECT="--project-name $PROJECT"
 fi 
@@ -41,18 +41,18 @@ if [ -z "$container" ]; then
     # masternode is not running
     exit 1
 fi
-current_ver=$(sh "$BASEDIR/node-info.sh")
+sh "$BASEDIR/node-info.sh" > /dev/null
 get_latest_github_release "AirWireOfficial/wire-core"
 # shellcheck disable=SC1003
 ver=$(echo "$RESULT" | sed 's\v\\')
-if echo "$current_ver" | grep -q "VERSION: $ver"; then
+if grep -q "VERSION: $ver" "$BASEDIR/../data/node.info"; then
     exit 0
 else
     docker-compose -f "$BASEDIR/../docker-compose.yml" $PROJECT build --no-cache && \
     docker-compose -f "$BASEDIR/../docker-compose.yml" $PROJECT up -d --force-recreate -t 120
     sleep 10
-    current_ver=$(sh "$BASEDIR/node-info.sh")
-    if echo "$current_ver" | grep -q "VERSION: $ver" "$BASEDIR/../data/node.info"; then
+    sh "$BASEDIR/node-info.sh" > /dev/null
+    if grep -q "VERSION: $ver" "$BASEDIR/../data/node.info"; then
         exit 0
     else 
         # failed to update masternode

@@ -18,5 +18,4 @@
 #
 #  Contact: cryi@tutanota.com
 
-ver=$(/usr/sbin/wired -version | grep "Wire Core Daemon version v" | sed "s/Wire Core Daemon version v//" |  sed "s/-.*//")
-printf "%s" "$ver"
+cat ./version
