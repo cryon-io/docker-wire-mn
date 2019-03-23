@@ -1,11 +1,47 @@
-## Docker WIRE Masternode © cryon.io 2019
+## Docker AIRWIRE Masternode © cryon.io 2019
 
-Docker template for WIRE Masternode.
+Docker template for AIRWIRE Masternode.
 
 
 WIRE Donations: `CRxuR593XxLQEXtxvM45wXo45kwxDgdXTd`
 
-[Quickstart Guide](https://github.com/cryon-io/docker-wire-mn/wiki/Quickstart---ANS)
+<details>
+<summary>All Donation Addresses</summary>
+<p>
+General: 
+
+| Currency      | Address       |
+| ------------- |---------------|
+| ADA   | `DdzFFzCqrhskw9aCFBtbNaTJQ8YP5JQbKrGYZufjnxmpPXawoyph3kTQPpAFo92zHUzXagYoFAuCfzrM7VWmQmv4zKu1Srte2hQybbdU`|
+| BTC   | `1GNeAADRvghCK9bfvCkfvhpn5refs1ptur`|
+| CLO   | `0x564Ba7f1f50731BE66D8268Ce1BF5437CaBe7cF9`|
+| DASH  | `Xy5GKM76y6npuX1CuisiRbQaAMNLbkcom9`|
+| DOGE  | `DEYdPoPDoQbXev8yUDScw6yfUJELkRo21u`|
+| ETC   | `0x9Ae1145cBE787911682b841e9A0e4dfEd7053A26`|
+| ETH   | `0x21CA1661617c7132c8Eb9d7bD5991b8ae46aB612`|
+| LSK   | `6899960334149976210L`|
+| LTC   | `LhbjK9mLcRNxDDMNniDmEib2AnuifZAS4Q`|
+| WAVES | `3P8zfPreDAYZFjWrvvoRXFirY322QnntPkL`|
+| XLM   | `GABQUVQASWXUPWA7ZR5CLL43V3UD3MCPTRERC7WNRGZVG5VYAIT3HFPS`|
+| XMR   | `43kUUCUdrUxeSWsLCJLfFbeYf4CZxGnmpSs4MdaxtPE8PdkKm8sSyA7BZfVwCaVfLFEoewheCoJZagWnwMAdZa821GNFG9q`|
+| XRP   | `rP86kHKofB8nZCUA7e1C89csRSSkEkNb5x`|
+| XVG   | `DNmUxSSbYGF9iZnCHgQVmtyPSsewZduXvf`|
+| ZEC   | `t1WE6Am9AFWojyUDKu5LboAAd3F9BX3Xb9n`|
+| ZEN   | `znhsEqGyaNp3sTe2fkoKCvbLP7MeWSc7SAm`|
+
+Supported node specific:
+
+| Currency      | Address       |
+| ------------- |---------------|
+| CRW   | `16a1Ekv3tFNGX7YmzKLcdJnSam61BrNFrH`|
+| ETHO  | `0x46Ff451710Dd245040098c2F308CA55A373ff2cE`|
+| GIN   | `GNSysXfThymKMSTKRaP7Nc1TLK3RkVbxuM`|
+| SND   | `SaQpqmT2nimD8jLPZwfx3eL9B4jWmvqyWx`|
+| ULEAD | `UYKAaZFM4gcv9msJREgEVgMwwcfJoVYBit`|
+| WIRE  | `CRxuR593XxLQEXtxvM45wXo45kwxDgdXTd`|
+| ZEST  | `ZEeDEnGaPHRmA5VN6cHWN7fdsQWgcN3v5z`|
+</p>
+</details> 
 
 ## Prerequisites 
 
@@ -14,19 +50,10 @@ WIRE Donations: `CRxuR593XxLQEXtxvM45wXo45kwxDgdXTd`
 
 (If you run on VPS provider, which uses OpenVZ, setup requires at OpenVZ 7)
 
-## Setup ANS (AUTONOMOUS NODE SYSTEM - recommended)
+For detailed information check out [AIRWIRE Masternode WIKI](https://github.com/cryon-io/docker-wire-mn/wiki)
 
-1. - `git clone "https://github.com/cryon-io/ans.git" [path] && cd [path] && chmod +x ./ans` # replace path with directory you want to store node in
-   or 
-   - `wget https://github.com/cryon-io/ans/archive/master.zip && unzip -o master.zip && mv ./ans-master [path] && cd [path] && chmod +x ./ans`
-2. one of commands below depending of your preference (run as *root* or use *sudo*)
-    - `./ans --full --node=WIRE_MN` # full setup of WIRE MN for current user
-    - `./ans --full --user=[user] --node=WIRE_MN --auto-update-level=[level] -sp=ip=[external ip] -sp=nodeprivkey=[MN privkey]` 
-        * full setup of WIRE COIN MN for defined user (directory location and structure is preserved) sets specified auto update level (Refer to Autoupdates)
-        * Do not forget to set master node **external ip** and **privkey**. This is required only first time.
-3.  logout, login and check node status
-    - `./ans --node-info`
+## Setup
 
-## Manual Setup (non ANS)
-
-Recommended only for advance users. Guide - [Manual Setup](https://github.com/cryon-io/docker-wire-mn/wiki/Manual-Setup).
+- [Unit (Recommended for beginners)](https://github.com/cryon-io/docker-wire-mn/wiki/%5Bsetup%5D-Unit)
+- [ANS (advanced users)](https://github.com/cryon-io/docker-wire-mn/wiki/%5Bsetup%5D-ANS)
+- [Standalone (pros only)](https://github.com/cryon-io/docker-wire-mn/wiki/%5Bsetup%5D-Standalone)
