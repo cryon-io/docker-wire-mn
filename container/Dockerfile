@@ -22,14 +22,6 @@ FROM ubuntu:bionic
 RUN apt-get update && apt-get upgrade -q -y
 RUN apt-get install wget curl libjemalloc1 unzip jq -y
 
-# RUN apt-get -y install software-properties-common
-# RUN apt-add-repository -y ppa:bitcoin/bitcoin
-# RUN apt-get -y update
-# RUN apt-get -y install git libevent-dev libboost-dev libboost-chrono-dev libboost-filesystem-dev \
-#     libboost-program-options-dev libboost-system-dev libboost-test-dev libboost-thread-dev libdb4.8-dev \
-#     libdb4.8++-dev libminiupnpc-dev virtualenv python-pip dh-autoreconf pkg-config build-essential \
-#     libssl-dev libzmq3-dev libgmp3-dev libminiupnpc-dev
-
 ADD healthcheck.sh /healthcheck.sh
 RUN chmod +x /healthcheck.sh
 HEALTHCHECK --interval=10s --timeout=30s --start-period=30s --retries=3 \
@@ -38,7 +30,7 @@ HEALTHCHECK --interval=10s --timeout=30s --start-period=30s --retries=3 \
 # create user
 RUN adduser --disabled-login \
          --disabled-password \
-         --gecos "" \
+         --gecos "wire masternode" \
          --uid 16000 \
          wire
 
