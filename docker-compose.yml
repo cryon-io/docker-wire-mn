@@ -33,6 +33,7 @@ services:
     restart: always
     init: true
     build: ./container
+    stop_grace_period: 30s
     volumes:
       - "./data:/home/wire/.wire:rw"
     pids_limit: 75
