@@ -43,4 +43,8 @@ case $PARAM in
     PROJECT)
         printf "PROJECT=%s" "$VALUE" >  "$BASEDIR/../project_id"
     ;;
+    bootstrap)
+        TEMP=$(sed "s/BOOTSTRAP_URL=.*/BOOTSTRAP_URL=\"$VALUE\"/g" "$BASEDIR/before-start.sh")
+        printf "%s" "$TEMP" > "$BASEDIR/before-start.sh"
+    ;;
 esac

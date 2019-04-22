@@ -19,11 +19,16 @@
 #  Contact: cryi@tutanota.com
 
 BASEDIR=$(dirname "$0")
+BOOTSTRAP_URL=""
 
 if [ ! -d "$BASEDIR/../data/blocks" ]; then 
-    GIT_INFO=$(curl -sL "https://api.github.com/repos/AirWireOfficial/wire-core/releases/latest")                                       
-    URL=$(printf "%s\n" "$GIT_INFO" | jq .assets[].browser_download_url -r | grep snapshot)  
     
+    if [ -n "$BOOTSTRAP_URL" ]; then
+        URL="$BOOTSTRAP_URL"
+    else 
+        GIT_INFO=$(curl -sL "https://api.github.com/repos/AirWireOfficial/wire-core/releases/latest")                                       
+        URL=$(printf "%s\n" "$GIT_INFO" | jq .assets[].browser_download_url -r | grep snapshot)  
+    fi
     # backup URL
     if [ -z "$URL" ]; then
         URL="https://github.com/AirWireOfficial/wire-core/releases/download/1.4.0/snapshot.tar.gz"
