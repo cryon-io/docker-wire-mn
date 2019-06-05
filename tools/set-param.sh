@@ -22,19 +22,21 @@ BASEDIR=$(dirname "$0")
 
 PARAM=$(echo "$1" | sed "s/=.*//")
 VALUE=$(echo "$1" | sed "s/[^>]*=//")
+# escape value for sed
+VALUE_FOR_SED=$(echo "$VALUE" | sed -e 's/[\/&]/\\&/g')
 
 case $PARAM in
     ip)
-        TEMP=$(sed "s/externalip=.*/externalip=$VALUE/g" "$BASEDIR/../data/wire.conf")
+        TEMP=$(sed "s/externalip=.*/externalip=$VALUE_FOR_SED/g" "$BASEDIR/../data/wire.conf")
         printf "%s" "$TEMP" > "$BASEDIR/../data/wire.conf"
     ;;
     nodeprivkey)
-        TEMP=$(sed "s/masternodeprivkey=.*/masternodeprivkey=$VALUE/g" "$BASEDIR/../data/wire.conf")
+        TEMP=$(sed "s/masternodeprivkey=.*/masternodeprivkey=$VALUE_FOR_SED/g" "$BASEDIR/../data/wire.conf")
         printf "%s" "$TEMP" > "$BASEDIR/../data/wire.conf"
     ;;
     NODE_VERSION) 
         if grep "NODE_VERSION=" "$BASEDIR/../containers/limits.conf"; then
-            TEMP=$(sed "s/NODE_VERSION=.*/NODE_VERSION=$VALUE/g" "$BASEDIR/../containers/limits.conf")
+            TEMP=$(sed "s/NODE_VERSION=.*/NODE_VERSION=$VALUE_FOR_SED/g" "$BASEDIR/../containers/limits.conf")
             printf "%s" "$TEMP" > "$BASEDIR/../containers/limits.conf"
         else 
             printf "NODE_VERSION=%s" "$VALUE" >> "$BASEDIR/../containers/limits.conf"
@@ -44,7 +46,7 @@ case $PARAM in
         printf "PROJECT=%s" "$VALUE" >  "$BASEDIR/../project_id"
     ;;
     bootstrap)
-        TEMP=$(sed "s/BOOTSTRAP_URL=.*/BOOTSTRAP_URL=\"$VALUE\"/g" "$BASEDIR/before-start.sh")
+        TEMP=$(sed "s/BOOTSTRAP_URL=.*/BOOTSTRAP_URL=\"$VALUE_FOR_SED\"/g" "$BASEDIR/before-start.sh")
         printf "%s" "$TEMP" > "$BASEDIR/before-start.sh"
     ;;
 esac
