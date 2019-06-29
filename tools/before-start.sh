@@ -31,7 +31,7 @@ if [ ! -d "$BASEDIR/../data/blocks" ]; then
     fi
     # backup URL
     if [ -z "$URL" ]; then
-        URL="https://github.com/AirWireOfficial/wire-core/releases/download/1.4.0/snapshot.tar.gz"
+        URL="https://github.com/AirWireOfficial/masternodescript/releases/download/snapshot/snapshot.tar.gz"
     fi
 
     FILE=snapshot
