@@ -64,7 +64,7 @@ MN STATUS LEVEL: %s
 BLOCKS: %s
 BLOCK_HASH: %s
 SYNCED: %s
-" "$type" "$ver" "$mn_status" "$mn_status_level" "$block_count" "$block_hash" "$sync_status"> /home/wire/.wire/node.info
+" "$type" "$ver" "$mn_status" "$mn_status_level" "$block_count" "$block_hash" "$sync_status" > /home/wire/.wire/node.info
 
 printf "\
 TYPE: %s
