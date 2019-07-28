@@ -50,6 +50,12 @@ if [ ! -d "$BASEDIR/../data/blocks" ]; then
         unzip "./$FILE.zip" && \
         rm -f "./$FILE.zip")
     ;;
+    *.tar.bz2)
+        (cd "$BASEDIR/../data/" && \
+        curl -L "$URL" -o "./$FILE.tar.bz2" && \
+        tar xjf "./$FILE.tar.bz2" && \
+        rm -f "./$FILE.tar.bz2")
+    ;;
     esac
     sh "$BASEDIR/fs-permissions.sh"
 fi
