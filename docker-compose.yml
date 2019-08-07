@@ -20,6 +20,8 @@ version: "2.4"
 services:
   autoheal:
     restart: always
+    init: true
+    network_mode: none
     image: cryi/autoheal
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
