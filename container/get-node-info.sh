@@ -52,7 +52,11 @@ case "$mn_status" in
         mn_status_level="ok"
     ;;
     *)
-        mn_status_level="error"
+        if [ "$sync_status" = "true" ]; then
+            mn_status_level="warning"
+        else 
+            mn_status_level="error"
+        fi
     ;;
 esac
 
